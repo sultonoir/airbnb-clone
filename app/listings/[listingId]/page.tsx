@@ -3,6 +3,7 @@ import getLIstingById from "@/app/actions/getListingById";
 import EmptyState from "@/app/components/EmptyState";
 import React from "react";
 import ListingClient from "./ListingClient";
+import getReservations from "@/app/actions/getReservations";
 
 interface Iparams {
   listingId?: string;
@@ -11,6 +12,7 @@ interface Iparams {
 const page = async ({ params }: { params: Iparams }) => {
   const listing = await getLIstingById(params);
   const currentUser = await getCurrentUser();
+  const reservations = await getReservations(params);
   if (!listing) {
     return <EmptyState />;
   }
@@ -19,6 +21,7 @@ const page = async ({ params }: { params: Iparams }) => {
     <ListingClient
       listing={listing}
       currentUser={currentUser}
+      reservations={reservations}
     />
   );
 };
