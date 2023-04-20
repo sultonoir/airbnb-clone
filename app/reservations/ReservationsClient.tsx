@@ -7,7 +7,7 @@ import Container from "../components/Container";
 import Heading from "../components/Heading";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import ListingCard from "../components/llisting/Listingcard";
+import ListingCard from "../components/listing/Listingcard";
 
 interface ReservationsClientProps {
   currentUser: SafeUser | null;
