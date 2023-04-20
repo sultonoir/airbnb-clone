@@ -8,10 +8,12 @@ const favoriteListing = async () => {
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
-    <EmptyState
-      title="No favorite found"
-      subtitle="Look like you have no favorite listings"
-    />;
+    return (
+      <EmptyState
+        title="No favorite found"
+        subtitle="Look like you have no favorite listings"
+      />
+    );
   }
 
   return (

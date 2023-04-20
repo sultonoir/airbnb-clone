@@ -75,7 +75,7 @@ const UserMenu = ({ currentUser }: UserMenuProps) => {
                   onClick={rentModal.onOpen}
                   label="Kyouka my home"
                 />
-                <br />
+                <hr />
                 <MenuItem
                   onClick={() => signOut()}
                   label="Logout"

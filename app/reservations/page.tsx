@@ -1,7 +1,6 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getReservations from "../actions/getReservations";
 import EmptyState from "../components/EmptyState";
-import Heading from "../components/Heading";
 import ReservationsClient from "./ReservationsClient";
 
 const ReservationsPage = async () => {
@@ -17,7 +16,7 @@ const ReservationsPage = async () => {
   }
   if (reservation.length === 0) {
     return (
-      <Heading
+      <EmptyState
         title="No Reservation found"
         subtitle="Looks like you have no reservation on your profile"
       />
