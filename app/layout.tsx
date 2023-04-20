@@ -34,7 +34,6 @@ export default async function RootLayout({
         />
       </head>
       <body className={font.className}>
-        <Analytics />
         <Navbar currentUser={currentUser} />
         <ToasterProvider />
         <SearchModal />
@@ -42,6 +41,7 @@ export default async function RootLayout({
         <RegisterModal />
         <RentModal />
         <div className="pb-20 pt-28">{children}</div>
+        <Analytics />
       </body>
     </html>
   );
