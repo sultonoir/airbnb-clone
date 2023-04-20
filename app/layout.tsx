@@ -7,6 +7,8 @@ import LoginModal from "./components/modal/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import RentModal from "./components/modal/RentModal";
 import SearchModal from "./components/modal/SearchModal";
+import { Analytics } from "@vercel/analytics/react";
+
 const font = Nunito({
   subsets: ["latin"],
 });
@@ -32,6 +34,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={font.className}>
+        <Analytics />
         <Navbar currentUser={currentUser} />
         <ToasterProvider />
         <SearchModal />
