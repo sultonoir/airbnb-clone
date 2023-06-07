@@ -45,6 +45,7 @@ const RegisterModal = () => {
         registerModal.onClose();
       });
   };
+
   const toggle = useCallback(() => {
     loginModal.onOpen();
     registerModal.onClose();
@@ -52,28 +53,78 @@ const RegisterModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="welcome to Kyouka" subtitle="Create an account" />
-      <Input id="email" type="email" label="email" disabled={isloading} register={register} errors={errors} required />
-      <Input id="name" label="Name" disabled={isloading} register={register} errors={errors} required />
-      <Input id="password" type="password" label="Password" disabled={isloading} register={register} errors={errors} required />
+      <Heading
+        title="welcome to Kyouka"
+        subtitle="Create an account"
+      />
+      <Input
+        id="email"
+        type="email"
+        label="email"
+        disabled={isloading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="name"
+        label="Name"
+        disabled={isloading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="password"
+        type="password"
+        label="Password"
+        disabled={isloading}
+        register={register}
+        errors={errors}
+        required
+      />
     </div>
   );
 
   const footerContent = (
     <div className="flex flex-col gap-3 mt-3">
-      <Button outline label="Continue with google" icon={FcGoogle} onClick={() => signIn("google")} />
-      <Button outline label="Continue with github" icon={AiFillGithub} onClick={() => signIn("github")} />
+      <Button
+        outline
+        label="Continue with google"
+        icon={FcGoogle}
+        onClick={() => signIn("google")}
+      />
+      <Button
+        outline
+        label="Continue with github"
+        icon={AiFillGithub}
+        onClick={() => signIn("github")}
+      />
       <div className="mt-4 text-neutral-500 text-center font-light">
         <div className="flex flex-row items-center gap-2 justify-center">
           <div>All ready have an account ?</div>
-          <div onClick={toggle} className="text-neutral-800 cursor-pointer hover:underline">
+          <div
+            onClick={toggle}
+            className="text-neutral-800 cursor-pointer hover:underline"
+          >
             Log in
           </div>
         </div>
       </div>
     </div>
   );
-  return <Modal disabled={isloading} isOpen={registerModal.isOpen} title="Register" actionLabel="Register" onClose={registerModal.onClose} onSubmit={handleSubmit(onSubmit)} body={bodyContent} footer={footerContent} />;
+  return (
+    <Modal
+      disabled={isloading}
+      isOpen={registerModal.isOpen}
+      title="Register"
+      actionLabel="Register"
+      onClose={registerModal.onClose}
+      onSubmit={handleSubmit(onSubmit)}
+      body={bodyContent}
+      footer={footerContent}
+    />
+  );
 };
 
 export default RegisterModal;
