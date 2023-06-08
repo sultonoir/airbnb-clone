@@ -11,6 +11,7 @@ import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 interface ListingCardProps {
   data: SafeListing;
@@ -52,32 +53,27 @@ const ListingCard: React.FC<ListingCardProps> = ({
   );
 
   const onPayment = () => {
-    const midtransClient = require("midtrans-client");
-    // Create Snap API instance
-    let snap = new midtransClient.Snap({
-      isProduction: false,
-      serverKey: "SB-Mid-server-ibbQGuRA_qeW2zYEzcD-wy7S",
-      clientKey: "SB-Mid-client-9PRvXiPxw7rsgcHy",
-    });
-    let parameter = {
-      transaction_details: {
-        order_id: reservation?.id,
-        gross_amount: reservation?.totalPrice,
+    const fetch = require("node-fetch");
+
+    const url = "https://app.sandbox.midtrans.com/snap/v1/transactions";
+    const options = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "content-type": "application/json",
+        authorization:
+          "Basic U0ItTWlkLXNlcnZlci1pYmJRR3VSQV9xZVcyellFemNELXd5N1M6TWludXN0dTM2NQ==",
       },
-      credit_card: {
-        secure: true,
-      },
+      body: JSON.stringify({
+        transaction_details: { order_id: "order-id", gross_amount: 10000 },
+        credit_card: { secure: true },
+      }),
     };
-    snap
-      .createTransaction(parameter)
-      .then((transaction: any) => {
-        // transaction redirect_url
-        let redirectUrl = transaction.redirect_url;
-        window.location.href = redirectUrl;
-      })
-      .catch((error: any) => {
-        toast.error(error.message);
-      });
+
+    fetch(url, options)
+      .then((res: any) => res.json())
+      .then((json: any) => console.log(json))
+      .catch((err: any) => console.error("error:" + err));
   };
 
   const price = useMemo(() => {
